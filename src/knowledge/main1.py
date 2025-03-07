@@ -6,7 +6,13 @@ import os
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
 # Create a knowledge source
-content = "Users name is Hasnain. He is 18 years old and lives in Karachi Pakistan."
+content = """
+            Users name is Hasnain. He is 18 years old 
+            He lives in Karachi Pakistan .
+            He got Experties In Html,Css,Typescript,Python,React,Nodejs,Express,Graphql,Postgresql,Mongodb,Langchain,Crewai
+            He is Learning Certified Agentic And Robottics AI Engineering From PIAIC
+            
+            """
 string_source = StringKnowledgeSource(
     content=content,
 )
@@ -56,5 +62,7 @@ crew = Crew(
     }
 )
 def kickoff():
-    result = crew.kickoff(inputs={"question": "What city does Hasnain live in and how old is he?"})
+    result = crew.kickoff(inputs={"question": "Who is Hasnain Give me his name and age and where he lives and what he knows about and what he is learning now"})
+    with open("README.md", "w") as f:
+        f.write(str(result))
     print(result)
